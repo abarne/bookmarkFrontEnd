@@ -1,0 +1,19 @@
+.auth-form {
+	width: 25rem;
+	max-width: 80%;
+	margin: 5rem auto;
+}
+
+.login__form__container {
+	box-shadow: 6px 6px 10px rgba(27, 27, 27, 0.808), -6px -6px 10px rgba(255, 255, 255, 0.781);
+	border-radius: 20px;
+	width: 500px;
+	margin: 0 auto;
+	padding: 60px;
+	margin-top: 90px;
+	font-size: 1.2rem;
+}
+
+.login__form__container input {
+	line-height: 2rem;
+}
