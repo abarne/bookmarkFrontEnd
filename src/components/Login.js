@@ -36,14 +36,26 @@ class Login extends React.Component {
 					localStorage.setItem('token', `Bearer ${res.data.token}`);
 					this.props.history.push('/mainCategories');
 				})
-				.catch((err) => console.log('Login error, ', err.response));
+				.catch((err) => {
+					window.alert(err.response.data.message);
+					console.log('Login error, ', err.response);
+				});
 		} else {
 			axiosWithAuth()
 				.post('/user/signup', this.state.credentials)
 				.then((res) => {
 					console.log(res);
+					if (res.data.message === 'User created') {
+						window.alert('Sign up successful, please log in.');
+						this.setState((prevState) => {
+							return { isLogin: !prevState.isLogin };
+						});
+					}
 				})
-				.catch((err) => console.log('Sign up error,', err.response));
+				.catch((err) => {
+					window.alert(err.response.data.message);
+					console.log('Sign up error,', err.response);
+				});
 		}
 	};
 
