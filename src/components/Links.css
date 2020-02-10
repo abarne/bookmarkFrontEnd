@@ -10,16 +10,6 @@
 	min-height: 100vh;
 }
 
-.link__clip__path__border {
-	width: 300px;
-	max-height: 150px;
-	background: black;
-	margin-left: 25px;
-	margin-right: 25px;
-	margin-top: 25px;
-	box-shadow: 6px 6px 10px rgba(27, 27, 27, 0.808), -6px -6px 10px rgba(255, 255, 255, 0.781);
-}
-
 .link__category__container {
 	position: relative;
 	display: flex;
@@ -27,6 +17,9 @@
 	align-items: center;
 	width: 300px;
 	min-height: 150px;
+	margin-left: 40px;
+	margin-top: 40px;
+	box-shadow: 6px 6px 10px rgba(27, 27, 27, 0.808), -6px -6px 10px rgba(255, 255, 255, 0.781);
 }
 
 .link__category__title {
