@@ -3,16 +3,11 @@
 	/* border: 2px solid red; */
 }
 
-.new__category__form {
-	background-color: blanchedalmond;
-}
-
 .category__section {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: left;
 	min-height: 100vh;
-	background-color: blanchedalmond;
 }
 
 .clip__path__parent {

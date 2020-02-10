@@ -12,6 +12,8 @@
 	padding: 60px;
 	margin-top: 90px;
 	font-size: 1.2rem;
+	background-color: rgb(49, 52, 58);
+	color: #e0dbd1;
 }
 
 .login__form__container input {

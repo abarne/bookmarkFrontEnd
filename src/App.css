@@ -3,7 +3,7 @@
 }
 
 body {
-	background-color: blanchedalmond;
+	background-image: url('./images/\'8b6a720e.png\'');
 }
 
 .main-content {
@@ -33,9 +33,9 @@ body {
 
 .form-actions button,
 .btn {
-	background-color: orangered;
+	background-color: #f25b45;
 	font: inherit;
-	border: 1px solid orangered;
+	border: 1px solid #f25b45;
 	border-radius: 3px;
 	padding: 0.25rem 1rem;
 	margin-right: 1rem;
@@ -55,7 +55,11 @@ body {
 .links {
 	display: flex;
 	justify-content: space-around;
-	background-color: orangered;
+	background-color: #31343a;
+}
+
+.links h1 {
+	color: #e0dbd1;
 }
 
 .link {
@@ -79,6 +83,8 @@ img {
 	margin-bottom: 60px;
 	box-shadow: 6px 6px 10px rgba(27, 27, 27, 0.808), -6px -6px 10px rgba(255, 255, 255, 0.781);
 	border-radius: 20px;
+	background-color: rgb(49, 52, 58);
+	color: #e0dbd1;
 }
 
 .form {
@@ -102,7 +108,7 @@ img {
 	width: 80%;
 	margin: 0 auto;
 	border-radius: 50px;
-	background-color: blanchedalmond;
+	background-color: #a9a9a9;
 	box-shadow: 6px 6px 10px rgb(255, 255, 255), -4px -4px 10px rgba(27, 27, 27, 0.808);
 	padding: 10px;
 }
@@ -120,7 +126,8 @@ img {
 .head__container h1 {
 	margin-left: 10%;
 	font-size: 4rem;
-	color: rgba(19, 19, 19, 0.938);
+	/* color: rgba(19, 19, 19, 0.938); */
+	color: #e0dbd1;
 }
 
 .form__input {
