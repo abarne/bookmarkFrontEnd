@@ -7,12 +7,20 @@ import SubCategory from './components/SubCategories';
 import PrivateRoute from './components/PrivateRoute';
 import Links from './components/Links';
 
-function App() {
+function App(props) {
+	const logOutHandler = () => {
+		console.log('log out clicked');
+		console.log('props :', props);
+		localStorage.setItem('token', ``);
+		window.location.reload();
+	};
+
 	return (
 		<Router>
 			<div className="App">
 				<div className="links">
 					<h1>Bookmark Manager</h1>
+					<h2 onClick={() => logOutHandler()}>Log Out</h2>
 				</div>
 				<Switch>
 					<Route exact path="/" component={Login} />
