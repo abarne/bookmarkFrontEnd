@@ -67,6 +67,11 @@ body {
 	text-decoration: underline;
 }
 
+.links h2:hover {
+	cursor: pointer;
+	color: #fdf8ee;
+}
+
 .link {
 	text-decoration: none;
 }
