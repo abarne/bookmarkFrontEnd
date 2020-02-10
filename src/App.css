@@ -58,8 +58,13 @@ body {
 	background-color: #31343a;
 }
 
-.links h1 {
+.links h1,
+.links h2 {
 	color: #e0dbd1;
+}
+
+.links h2 {
+	text-decoration: underline;
 }
 
 .link {
