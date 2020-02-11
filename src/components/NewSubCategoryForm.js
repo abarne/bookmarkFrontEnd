@@ -46,8 +46,11 @@ class NewSubCategoryForm extends Component {
 			<div className="head__container">
 				<div className="form__container">
 					<form className="form" onSubmit={this.createCategory}>
-						<label className="form__label">Title:</label>
+						<label htmlFor="title" className="form__label">
+							Title:
+						</label>
 						<input
+							id="title"
 							className="form__input"
 							type="text"
 							name="title"
@@ -56,8 +59,11 @@ class NewSubCategoryForm extends Component {
 						/>
 						{/* <input type="text" name="color" value={this.state.color} onChange={this.handleChange} /> */}
 						<div className="form__color__container">
-							<label className="form__label">Choose Color:</label>
+							<label htmlFor="choose-color" className="form__label">
+								Choose Color:
+							</label>
 							<InputColor
+								id="choose-color"
 								className="form__color"
 								initialHexColor="#5e72e4"
 								onChange={(e) => {

@@ -83,7 +83,8 @@ class Links extends Component {
 										key={item._id}
 									>
 										<a
-											rel={'external'}
+											rel="noreferrer"
+											// rel={'external'}
 											className="fab fa-instagram link__category__link"
 											target="_blank"
 											href={`${link}`}
