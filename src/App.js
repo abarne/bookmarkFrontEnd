@@ -6,22 +6,13 @@ import MainCategory from './components/MainCategories';
 import SubCategory from './components/SubCategories';
 import PrivateRoute from './components/PrivateRoute';
 import Links from './components/Links';
+import { NavBar } from './components/NavBar';
 
 function App(props) {
-	const logOutHandler = () => {
-		console.log('log out clicked');
-		console.log('props :', props);
-		localStorage.setItem('token', ``);
-		window.location.reload();
-	};
-
 	return (
 		<Router>
 			<div className="App">
-				<div className="links">
-					<h1>Bookmark Manager</h1>
-					<h2 onClick={() => logOutHandler()}>Log Out</h2>
-				</div>
+				<Route path="/" render={(props) => <NavBar {...props} />} />
 				<Switch>
 					<Route exact path="/" component={Login} />
 					<PrivateRoute path="/mainCategories" component={MainCategory} />
