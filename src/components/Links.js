@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import NewLinkForm from './NewLinkForm';
-import { Link } from 'react-router-dom';
+import EditLinkForm from './EditLinkForm';
 import './Links.css';
 
 class Links extends Component {
 	state = {
 		links: [],
+		isEditing: false,
+		editingId: 0,
 		newLink: {
 			title: '',
 			link: '',
@@ -55,14 +57,23 @@ class Links extends Component {
 			});
 	};
 
+	toggleEdit = () => {
+		this.setState({ isEditing: false });
+	};
+
 	render() {
 		return (
 			<div className="new__category__form">
-				<NewLinkForm
-					getData={this.fetchData}
-					subId={this.props.match.params.id}
-					subCat={this.props.match.params.title}
-				/>
+				{!this.state.isEditing && (
+					<NewLinkForm
+						getData={this.fetchData}
+						subId={this.props.match.params.id}
+						subCat={this.props.match.params.title}
+					/>
+				)}
+				{this.state.isEditing && (
+					<EditLinkForm id={this.state.editingId} getData={this.fetchData} toggleEdit={this.toggleEdit} />
+				)}
 				{!this.state.links.length ? (
 					<h1 className="empty__list__header">You have no saved Links yet.</h1>
 				) : (
@@ -76,7 +87,7 @@ class Links extends Component {
 							console.log(link);
 
 							return (
-								<div className="link__clip__path__border">
+								<div key={item._id} className="link__clip__path__border">
 									<div
 										className="link__category__container"
 										style={{ backgroundColor: color }}
@@ -92,6 +103,17 @@ class Links extends Component {
 											<h1 className="link__category__title">{item.title}</h1>
 										</a>
 										{/* <button onClick={() => this.deleteLink(item._id)}>Delete</button> */}
+										<button
+											className="edit__button"
+											onClick={() => {
+												this.setState({
+													isEditing: !this.state.isEditing,
+													editingId: item._id
+												});
+											}}
+										>
+											Edit
+										</button>
 										<button
 											className="link__delete__button"
 											onClick={() => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import NewCategoryForm from './NewCategoryForm';
+import EditCategoryForm from './EditCategoryForm';
 import { Link } from 'react-router-dom';
 import './MainCategory.css';
 
@@ -8,6 +9,8 @@ class MainCategories extends Component {
 	state = {
 		mainCats: [],
 		isCreating: false,
+		isEditing: false,
+		editingId: 0,
 		newCategory: {
 			title: '',
 			color: ''
@@ -53,6 +56,10 @@ class MainCategories extends Component {
 			});
 	};
 
+	toggleEdit = () => {
+		this.setState({ isEditing: false });
+	};
+
 	render() {
 		return (
 			<div>
@@ -63,7 +70,14 @@ class MainCategories extends Component {
 					</div>
 				) : (
 					<div className="new__category__form">
-						<NewCategoryForm getData={this.fetchData} />
+						{!this.state.isEditing && <NewCategoryForm getData={this.fetchData} />}
+						{this.state.isEditing && (
+							<EditCategoryForm
+								id={this.state.editingId}
+								getData={this.fetchData}
+								toggleEdit={this.toggleEdit}
+							/>
+						)}
 						<div className="category__section">
 							{this.state.mainCats.map((item) => {
 								var color = item.color;
@@ -83,6 +97,16 @@ class MainCategories extends Component {
 													<h1 className="category__title">{item.title}</h1>
 												</Link>
 												{/* <button onClick={() => this.deleteCat(item._id)}>Delete</button> */}
+												<button
+													className="edit__button"
+													onClick={() =>
+														this.setState({
+															isEditing: !this.state.isEditing,
+															editingId: item._id
+														})}
+												>
+													Edit
+												</button>
 												<button
 													className="delete__button"
 													onClick={() => {

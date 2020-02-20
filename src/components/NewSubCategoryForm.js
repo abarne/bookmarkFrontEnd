@@ -20,6 +20,11 @@ class NewSubCategoryForm extends Component {
 
 	createCategory = (e) => {
 		e.preventDefault();
+		if (this.state.title.trim() === '') {
+			window.alert('A title is required!');
+			this.setState({ title: '' });
+			return;
+		}
 		let a = this.state.a / 100;
 		const newCat = {
 			title: this.state.title,
