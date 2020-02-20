@@ -20,6 +20,11 @@ class NewCategoryForm extends Component {
 
 	createCategory = (e) => {
 		e.preventDefault();
+		if (this.state.title.trim() === '') {
+			window.alert('A title is required!');
+			this.setState({ title: '' });
+			return;
+		}
 		let a = this.state.a / 100;
 		const newCat = {
 			title: this.state.title,
@@ -34,6 +39,7 @@ class NewCategoryForm extends Component {
 			.post('/mainCat', newCat)
 			.then((response) => {
 				console.log('new main cat post request done');
+				this.setState({ title: '' });
 				this.props.getData();
 			})
 			.catch((err) => {

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import NewSubCategoryForm from './NewSubCategoryForm';
+import EditSubCategoryForm from './EditSubCategoryForm';
 import './MainCategory.css';
 
 class SubCategories extends Component {
 	state = {
 		subCats: [],
 		isCreating: false,
+		isEditing: false,
+		editingId: 0,
 		newSubCategory: {
 			title: '',
 			color: ''
@@ -57,14 +60,27 @@ class SubCategories extends Component {
 			});
 	};
 
+	toggleEdit = () => {
+		this.setState({ isEditing: false });
+	};
+
 	render() {
 		return (
 			<div className="new__category__form">
-				<NewSubCategoryForm
-					getData={this.fetchData}
-					mainId={this.props.match.params.id}
-					mainCat={this.props.match.params.title}
-				/>
+				{!this.state.isEditing && (
+					<NewSubCategoryForm
+						getData={this.fetchData}
+						mainId={this.props.match.params.id}
+						mainCat={this.props.match.params.title}
+					/>
+				)}
+				{this.state.isEditing && (
+					<EditSubCategoryForm
+						id={this.state.editingId}
+						getData={this.fetchData}
+						toggleEdit={this.toggleEdit}
+					/>
+				)}
 				{!this.state.subCats.length ? (
 					<h1 className="empty__list__header">You have no Sub Categories yet.</h1>
 				) : (
@@ -83,6 +99,16 @@ class SubCategories extends Component {
 												<h1 className="category__title">{item.title}</h1>
 											</Link>
 											{/* <button onClick={() => this.deleteCat(item._id)}>Delete</button> */}
+											<button
+												className="edit__button"
+												onClick={() =>
+													this.setState({
+														isEditing: !this.state.isEditing,
+														editingId: item._id
+													})}
+											>
+												Edit
+											</button>
 											<button
 												className="delete__button"
 												onClick={() => {

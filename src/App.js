@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import MainCategory from './components/MainCategories';
 import SubCategory from './components/SubCategories';
 import PrivateRoute from './components/PrivateRoute';
 import Links from './components/Links';
 import { NavBar } from './components/NavBar';
+import './components/checkbox.css';
 
 function App(props) {
 	return (
