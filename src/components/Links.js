@@ -9,6 +9,7 @@ class Links extends Component {
 		links: [],
 		isEditing: false,
 		editingId: 0,
+		sortValue: 'A-Z',
 		newLink: {
 			title: '',
 			link: '',
@@ -50,15 +51,43 @@ class Links extends Component {
 			.delete(`/links/${id}`)
 			.then((response) => {
 				console.log('delete response :', response);
-				this.fetchData();
+				//this.fetchData();
+				this.removeLink(id);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
+	removeLink = (id) => {
+		let newLinks = this.state.links.filter((item) => item._id !== id);
+		this.setState({ links: newLinks });
+	};
+
+	addLink = (newLink) => {
+		this.setState({ links: [ ...this.state.links, newLink ] });
+	};
+
 	toggleEdit = () => {
 		this.setState({ isEditing: false });
+	};
+
+	sortSelect = (event) => {
+		this.setState({ sortValue: event.target.value });
+	};
+
+	sortList = () => {
+		if (this.state.sortValue === 'A-Z') {
+			let newLinks = this.state.links.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1));
+			this.setState({ links: newLinks });
+		} else if (this.state.sortValue === 'Z-A') {
+			let newLinks = this.state.links
+				.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1))
+				.reverse();
+			this.setState({ links: newLinks });
+		} else {
+			return;
+		}
 	};
 
 	render() {
@@ -66,6 +95,7 @@ class Links extends Component {
 			<div className="new__category__form">
 				{!this.state.isEditing && (
 					<NewLinkForm
+						addLink={this.addLink}
 						getData={this.fetchData}
 						subId={this.props.match.params.id}
 						subCat={this.props.match.params.title}
@@ -74,6 +104,22 @@ class Links extends Component {
 				{this.state.isEditing && (
 					<EditLinkForm id={this.state.editingId} getData={this.fetchData} toggleEdit={this.toggleEdit} />
 				)}
+				<div className="sort__div">
+					<label className="sort__label" htmlFor="sortChoice">
+						Sort by:
+					</label>
+					<select className="sort__select" id="sortChoice" onChange={this.sortSelect}>
+						<option className="sort__option" value="A-Z">
+							A-Z
+						</option>
+						<option className="sort__option" value="Z-A">
+							Z-A
+						</option>
+					</select>
+					<button className="sort__button" onClick={this.sortList}>
+						Sort
+					</button>
+				</div>
 				{!this.state.links.length ? (
 					<h1 className="empty__list__header">You have no saved Links yet.</h1>
 				) : (
