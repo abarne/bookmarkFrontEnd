@@ -40,7 +40,8 @@ class NewCategoryForm extends Component {
 			.then((response) => {
 				console.log('new main cat post request done');
 				this.setState({ title: '' });
-				this.props.getData();
+				//this.props.getData();
+				this.props.addCat(newCat);
 			})
 			.catch((err) => {
 				console.log(err);

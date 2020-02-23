@@ -33,6 +33,7 @@ class MainCategories extends Component {
 	}
 
 	fetchData = () => {
+		console.log('in fetch data');
 		axiosWithAuth()
 			.get('/mainCat')
 			.then((response) => {
@@ -60,8 +61,11 @@ class MainCategories extends Component {
 
 	removeCat = (id) => {
 		let newMain = this.state.mainCats.filter((item) => item._id !== id);
-		console.log('in remove category. id, newmain', id, newMain);
 		this.setState({ mainCats: newMain });
+	};
+
+	addCat = (newCat) => {
+		this.setState({ mainCats: [ ...this.state.mainCats, newCat ] });
 	};
 
 	toggleEdit = () => {
@@ -96,12 +100,12 @@ class MainCategories extends Component {
 			<div>
 				{this.state.mainCats.length === 0 ? (
 					<div>
-						<NewCategoryForm getData={this.fetchData} />
+						<NewCategoryForm getData={this.fetchData} addCat={this.addCat} />
 						<h1 className="empty__list__header">You have no Main Categories yet.</h1>
 					</div>
 				) : (
 					<div className="new__category__form">
-						{!this.state.isEditing && <NewCategoryForm getData={this.fetchData} />}
+						{!this.state.isEditing && <NewCategoryForm getData={this.fetchData} addCat={this.addCat} />}
 						{this.state.isEditing && (
 							<EditCategoryForm
 								id={this.state.editingId}
