@@ -10,6 +10,7 @@ class SubCategories extends Component {
 		subCats: [],
 		isCreating: false,
 		isEditing: false,
+		searchValue: '',
 		sortValue: 'A-Z',
 		editingId: 0,
 		newSubCategory: {
@@ -95,6 +96,11 @@ class SubCategories extends Component {
 		}
 	};
 
+	setSearch = (e) => {
+		this.setState({ searchValue: e.target.value });
+		console.log(this.state.searchValue);
+	};
+
 	render() {
 		return (
 			<div className="new__category__form">
@@ -128,49 +134,57 @@ class SubCategories extends Component {
 					<button className="sort__button" onClick={this.sortList}>
 						Sort
 					</button>
+					<input className="search__input" id="search" onChange={this.setSearch} />
 				</div>
 				{!this.state.subCats.length ? (
 					<h1 className="empty__list__header">You have no Sub Categories yet.</h1>
 				) : (
 					<div className="category__section">
-						{this.state.subCats.map((item) => {
-							var color = item.color;
-							return (
-								<div className="clip__path__parent">
-									<div className="clip__path__border">
-										<div
-											className="category__container"
-											style={{ backgroundColor: color }}
-											key={item._id}
-										>
-											<Link className="category__link" to={`/links/${item._id}/${item.title}`}>
-												<h1 className="category__title">{item.title}</h1>
-											</Link>
-											{/* <button onClick={() => this.deleteCat(item._id)}>Delete</button> */}
-											<button
-												className="edit__button"
-												onClick={() =>
-													this.setState({
-														isEditing: !this.state.isEditing,
-														editingId: item._id
-													})}
+						{this.state.subCats
+							.filter((item) => item.title.toLowerCase().includes(this.state.searchValue))
+							.map((item) => {
+								var color = item.color;
+								return (
+									<div className="clip__path__parent">
+										<div className="clip__path__border">
+											<div
+												className="category__container"
+												style={{ backgroundColor: color }}
+												key={item._id}
 											>
-												Edit
-											</button>
-											<button
-												className="delete__button"
-												onClick={() => {
-													if (window.confirm('Are you sure you want to delete this item?'))
-														this.deleteCat(item._id);
-												}}
-											>
-												Delete
-											</button>
+												<Link
+													className="category__link"
+													to={`/links/${item._id}/${item.title}`}
+												>
+													<h1 className="category__title">{item.title}</h1>
+												</Link>
+												{/* <button onClick={() => this.deleteCat(item._id)}>Delete</button> */}
+												<button
+													className="edit__button"
+													onClick={() =>
+														this.setState({
+															isEditing: !this.state.isEditing,
+															editingId: item._id
+														})}
+												>
+													Edit
+												</button>
+												<button
+													className="delete__button"
+													onClick={() => {
+														if (
+															window.confirm('Are you sure you want to delete this item?')
+														)
+															this.deleteCat(item._id);
+													}}
+												>
+													Delete
+												</button>
+											</div>
 										</div>
 									</div>
-								</div>
-							);
-						})}
+								);
+							})}
 					</div>
 				)}
 			</div>

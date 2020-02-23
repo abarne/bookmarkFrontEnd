@@ -9,6 +9,7 @@ class Links extends Component {
 		links: [],
 		isEditing: false,
 		editingId: 0,
+		searchValue: '',
 		sortValue: 'A-Z',
 		newLink: {
 			title: '',
@@ -90,6 +91,11 @@ class Links extends Component {
 		}
 	};
 
+	setSearch = (e) => {
+		this.setState({ searchValue: e.target.value });
+		console.log(this.state.searchValue);
+	};
+
 	render() {
 		return (
 			<div className="new__category__form">
@@ -119,60 +125,63 @@ class Links extends Component {
 					<button className="sort__button" onClick={this.sortList}>
 						Sort
 					</button>
+					<input className="search__input" id="search" onChange={this.setSearch} />
 				</div>
 				{!this.state.links.length ? (
 					<h1 className="empty__list__header">You have no saved Links yet.</h1>
 				) : (
 					<div className="link__category__section">
-						{this.state.links.map((item) => {
-							var color = item.color;
-							let link = item.link;
-							if (!link.includes('http')) {
-								link = 'http://' + link;
-							}
-							console.log(link);
+						{this.state.links
+							.filter((item) => item.title.toLowerCase().includes(this.state.searchValue))
+							.map((item) => {
+								var color = item.color;
+								let link = item.link;
+								if (!link.includes('http')) {
+									link = 'http://' + link;
+								}
+								console.log(link);
 
-							return (
-								<div key={item._id} className="link__clip__path__border">
-									<div
-										className="link__category__container"
-										style={{ backgroundColor: color }}
-										key={item._id}
-									>
-										<a
-											rel="noreferrer"
-											// rel={'external'}
-											className="fab fa-instagram link__category__link"
-											target="_blank"
-											href={`${link}`}
+								return (
+									<div key={item._id} className="link__clip__path__border">
+										<div
+											className="link__category__container"
+											style={{ backgroundColor: color }}
+											key={item._id}
 										>
-											<h1 className="link__category__title">{item.title}</h1>
-										</a>
-										{/* <button onClick={() => this.deleteLink(item._id)}>Delete</button> */}
-										<button
-											className="edit__button"
-											onClick={() => {
-												this.setState({
-													isEditing: !this.state.isEditing,
-													editingId: item._id
-												});
-											}}
-										>
-											Edit
-										</button>
-										<button
-											className="link__delete__button"
-											onClick={() => {
-												if (window.confirm('Are you sure you want to delete this item?'))
-													this.deleteLink(item._id);
-											}}
-										>
-											Delete
-										</button>
+											<a
+												rel="noreferrer"
+												// rel={'external'}
+												className="fab fa-instagram link__category__link"
+												target="_blank"
+												href={`${link}`}
+											>
+												<h1 className="link__category__title">{item.title}</h1>
+											</a>
+											{/* <button onClick={() => this.deleteLink(item._id)}>Delete</button> */}
+											<button
+												className="edit__button"
+												onClick={() => {
+													this.setState({
+														isEditing: !this.state.isEditing,
+														editingId: item._id
+													});
+												}}
+											>
+												Edit
+											</button>
+											<button
+												className="link__delete__button"
+												onClick={() => {
+													if (window.confirm('Are you sure you want to delete this item?'))
+														this.deleteLink(item._id);
+												}}
+											>
+												Delete
+											</button>
+										</div>
 									</div>
-								</div>
-							);
-						})}
+								);
+							})}
 					</div>
 				)}
 			</div>
