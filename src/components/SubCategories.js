@@ -10,6 +10,7 @@ class SubCategories extends Component {
 		subCats: [],
 		isCreating: false,
 		isEditing: false,
+		sortValue: 'A-Z',
 		editingId: 0,
 		newSubCategory: {
 			title: '',
@@ -64,6 +65,26 @@ class SubCategories extends Component {
 		this.setState({ isEditing: false });
 	};
 
+	sortSelect = (event) => {
+		this.setState({ sortValue: event.target.value });
+	};
+
+	sortList = () => {
+		if (this.state.sortValue === 'A-Z') {
+			let newSubCats = this.state.subCats.sort(
+				(a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1)
+			);
+			this.setState({ subCats: newSubCats });
+		} else if (this.state.sortValue === 'Z-A') {
+			let newSubCats = this.state.subCats
+				.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1))
+				.reverse();
+			this.setState({ subCats: newSubCats });
+		} else {
+			return;
+		}
+	};
+
 	render() {
 		return (
 			<div className="new__category__form">
@@ -81,6 +102,22 @@ class SubCategories extends Component {
 						toggleEdit={this.toggleEdit}
 					/>
 				)}
+				<div className="sort__div">
+					<label className="sort__label" htmlFor="sortChoice">
+						Sort by:
+					</label>
+					<select className="sort__select" id="sortChoice" onChange={this.sortSelect}>
+						<option className="sort__option" value="A-Z">
+							A-Z
+						</option>
+						<option className="sort__option" value="Z-A">
+							Z-A
+						</option>
+					</select>
+					<button className="sort__button" onClick={this.sortList}>
+						Sort
+					</button>
+				</div>
 				{!this.state.subCats.length ? (
 					<h1 className="empty__list__header">You have no Sub Categories yet.</h1>
 				) : (

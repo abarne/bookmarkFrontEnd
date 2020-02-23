@@ -77,15 +77,12 @@ class MainCategories extends Component {
 	};
 
 	sortList = () => {
-		console.log('we are in the sort function, here is state, ', this.state);
 		if (this.state.sortValue === 'A-Z') {
-			console.log('A-Z is true');
 			let newMainCats = this.state.mainCats.sort(
 				(a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1)
 			);
 			this.setState({ mainCats: newMainCats });
 		} else if (this.state.sortValue === 'Z-A') {
-			console.log('z-a is true');
 			let newMainCats = this.state.mainCats
 				.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1))
 				.reverse();
@@ -113,13 +110,21 @@ class MainCategories extends Component {
 								toggleEdit={this.toggleEdit}
 							/>
 						)}
-						<div>
-							<label htmlFor="sortChoice">Sort by:</label>
-							<select id="sortChoice" onChange={this.sortSelect}>
-								<option value="A-Z">A-Z</option>
-								<option value="Z-A">Z-A</option>
+						<div className="sort__div">
+							<label className="sort__label" htmlFor="sortChoice">
+								Sort by:
+							</label>
+							<select className="sort__select" id="sortChoice" onChange={this.sortSelect}>
+								<option className="sort__option" value="A-Z">
+									A-Z
+								</option>
+								<option className="sort__option" value="Z-A">
+									Z-A
+								</option>
 							</select>
-							<button onClick={this.sortList}>Sort</button>
+							<button className="sort__button" onClick={this.sortList}>
+								Sort
+							</button>
 						</div>
 						<div className="category__section">
 							{this.state.mainCats.map((item) => {
