@@ -10,6 +10,7 @@ class MainCategories extends Component {
 		mainCats: [],
 		isCreating: false,
 		isEditing: false,
+		sortValue: 'A-Z',
 		editingId: 0,
 		newCategory: {
 			title: '',
@@ -49,15 +50,45 @@ class MainCategories extends Component {
 			.delete(`/mainCat/${id}`)
 			.then((response) => {
 				console.log('delete respone, ', response);
-				this.fetchData();
+				//this.fetchData();
+				this.removeCat(id);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
+	removeCat = (id) => {
+		let newMain = this.state.mainCats.filter((item) => item._id !== id);
+		console.log('in remove category. id, newmain', id, newMain);
+		this.setState({ mainCats: newMain });
+	};
+
 	toggleEdit = () => {
 		this.setState({ isEditing: false });
+	};
+
+	sortSelect = (event) => {
+		this.setState({ sortValue: event.target.value });
+	};
+
+	sortList = () => {
+		console.log('we are in the sort function, here is state, ', this.state);
+		if (this.state.sortValue === 'A-Z') {
+			console.log('A-Z is true');
+			let newMainCats = this.state.mainCats.sort(
+				(a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1)
+			);
+			this.setState({ mainCats: newMainCats });
+		} else if (this.state.sortValue === 'Z-A') {
+			console.log('z-a is true');
+			let newMainCats = this.state.mainCats
+				.sort((a, b) => (a.title.toUpperCase() > b.title.toUpperCase() ? 1 : -1))
+				.reverse();
+			this.setState({ mainCats: newMainCats });
+		} else {
+			return;
+		}
 	};
 
 	render() {
@@ -78,6 +109,14 @@ class MainCategories extends Component {
 								toggleEdit={this.toggleEdit}
 							/>
 						)}
+						<div>
+							<label htmlFor="sortChoice">Sort by:</label>
+							<select id="sortChoice" onChange={this.sortSelect}>
+								<option value="A-Z">A-Z</option>
+								<option value="Z-A">Z-A</option>
+							</select>
+							<button onClick={this.sortList}>Sort</button>
+						</div>
 						<div className="category__section">
 							{this.state.mainCats.map((item) => {
 								var color = item.color;
