@@ -39,7 +39,8 @@ class NewSubCategoryForm extends Component {
 			.post(`/subCat/${this.props.mainId}`, newCat)
 			.then((response) => {
 				console.log('new main cat post request done');
-				this.props.getData();
+				//this.props.getData();
+				this.props.addCat(response.data);
 			})
 			.catch((err) => {
 				console.log(err);

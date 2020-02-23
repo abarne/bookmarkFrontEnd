@@ -54,11 +54,21 @@ class SubCategories extends Component {
 			.delete(`/subCat/${id}`)
 			.then((response) => {
 				console.log('delete response, ', response);
-				this.fetchData();
+				//this.fetchData();
+				this.removeCat(id);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+	};
+
+	removeCat = (id) => {
+		let newSubCats = this.state.subCats.filter((item) => item._id !== id);
+		this.setState({ subCats: newSubCats });
+	};
+
+	addCat = (newCat) => {
+		this.setState({ subCats: [ ...this.state.subCats, newCat ] });
 	};
 
 	toggleEdit = () => {
@@ -90,6 +100,7 @@ class SubCategories extends Component {
 			<div className="new__category__form">
 				{!this.state.isEditing && (
 					<NewSubCategoryForm
+						addCat={this.addCat}
 						getData={this.fetchData}
 						mainId={this.props.match.params.id}
 						mainCat={this.props.match.params.title}
