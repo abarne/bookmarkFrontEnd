@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Links from './components/Links';
 import { NavBar } from './components/NavBar';
 import './components/checkbox.css';
+import './search.css';
 
 function App(props) {
 	return (

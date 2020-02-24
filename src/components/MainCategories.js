@@ -116,25 +116,27 @@ class MainCategories extends Component {
 								toggleEdit={this.toggleEdit}
 							/>
 						)}
-						<div className="sort__div">
-							<label className="sort__label" htmlFor="sortChoice">
-								Sort by:
-							</label>
-							<select className="sort__select" id="sortChoice" onChange={this.sortSelect}>
-								<option className="sort__option" value="A-Z">
-									A-Z
-								</option>
-								<option className="sort__option" value="Z-A">
-									Z-A
-								</option>
-							</select>
-							<button className="sort__button" onClick={this.sortList}>
-								Sort
-							</button>
-							<label className="sort__label" htmlFor="search">
-								Search:{' '}
-							</label>
-							<input className="search__input" id="search" onChange={this.setSearch} />
+						<div className="sort__div__container">
+							<div className="sort__div">
+								<label className="sort__label" htmlFor="sortChoice">
+									Sort by:
+								</label>
+								<select className="sort__select" id="sortChoice" onChange={this.sortSelect}>
+									<option className="sort__option" value="A-Z">
+										A-Z
+									</option>
+									<option className="sort__option" value="Z-A">
+										Z-A
+									</option>
+								</select>
+								<button className="sort__button" onClick={this.sortList}>
+									Sort
+								</button>
+								<label className="sort__label__search" htmlFor="search">
+									Search:{' '}
+								</label>
+								<input className="search__input" id="search" onChange={this.setSearch} />
+							</div>
 						</div>
 						<div className="category__section">
 							{this.state.mainCats
