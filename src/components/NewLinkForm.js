@@ -35,7 +35,8 @@ class NewLinkForm extends Component {
 			.post(`/links/${this.props.subId}`, newLink)
 			.then((response) => {
 				console.log('add new link complete');
-				this.props.getData();
+				//this.props.getData();
+				this.props.addLink(response.data);
 			})
 			.catch((err) => {
 				console.log(err);

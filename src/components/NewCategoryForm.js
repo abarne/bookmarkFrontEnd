@@ -38,9 +38,10 @@ class NewCategoryForm extends Component {
 		axiosWithAuth()
 			.post('/mainCat', newCat)
 			.then((response) => {
-				console.log('new main cat post request done');
+				console.log('new main cat post request done', response);
 				this.setState({ title: '' });
-				this.props.getData();
+				//this.props.getData();
+				this.props.addCat(response.data);
 			})
 			.catch((err) => {
 				console.log(err);

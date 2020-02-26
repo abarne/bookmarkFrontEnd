@@ -148,3 +148,7 @@ img {
 	margin-left: 8%;
 	color: #e0dbd1;
 }
+
+input {
+	border-radius: 20px;
+}

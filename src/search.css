@@ -1,0 +1,44 @@
+.sort__div__container {
+	width: 400px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 8%;
+	box-shadow: 6px 6px 10px rgba(27, 27, 27, 0.808), -6px -6px 10px rgba(255, 255, 255, 0.781);
+	border-radius: 20px;
+	background-color: rgb(49, 52, 58);
+	color: #e0dbd1;
+}
+
+.sort__div {
+	width: 240px;
+	height: 100px;
+	color: #e0dbd1;
+	font-size: 1.4rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.sort__button {
+	border-radius: 20px;
+	box-shadow: -1px -1px 8px rgba(0, 0, 0, 0.568), 1px 1px 8px rgba(173, 173, 173, 0.808);
+}
+
+.sort__div * {
+	margin: 0 auto;
+}
+
+.sort__label__search {
+	margin-top: 20px;
+}
+
+.search__input {
+	height: 35px;
+	width: 250px;
+	margin-top: 4px;
+}
+
+.sort__select {
+	border-radius: 10px;
+}
