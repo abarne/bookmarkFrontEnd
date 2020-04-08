@@ -16,7 +16,8 @@ class SubCategories extends Component {
 		newSubCategory: {
 			title: '',
 			color: ''
-		}
+		},
+		currentEditingTitle: ''
 	};
 
 	componentDidMount() {
@@ -117,6 +118,7 @@ class SubCategories extends Component {
 						id={this.state.editingId}
 						getData={this.fetchData}
 						toggleEdit={this.toggleEdit}
+						editingTitle={this.state.currentEditingTitle}
 					/>
 				)}
 				<div className="sort__div__container">
@@ -169,7 +171,8 @@ class SubCategories extends Component {
 													onClick={() =>
 														this.setState({
 															isEditing: !this.state.isEditing,
-															editingId: item._id
+															editingId: item._id,
+															currentEditingTitle: item.title
 														})}
 												>
 													Edit

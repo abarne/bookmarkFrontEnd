@@ -112,7 +112,7 @@ class EditCategoryForm extends Component {
 						<button className="form__button">Edit Category</button>
 					</form>
 				</div>
-				<h1>Main Categories</h1>
+				<h1>Editing {this.props.editingTitle}</h1>
 			</div>
 		);
 	}
