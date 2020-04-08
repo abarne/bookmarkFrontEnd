@@ -170,7 +170,7 @@ class MainCategories extends Component {
 																currentEditingTitle: item.title
 															})}
 													>
-														Edit
+														{this.state.isEditing ? 'Close' : 'Edit'}
 													</button>
 													<button
 														className="delete__button"

@@ -178,7 +178,7 @@ class Links extends Component {
 													});
 												}}
 											>
-												Edit
+												{this.state.isEditing ? 'Close' : 'Edit'}
 											</button>
 											<button
 												className="link__delete__button"
