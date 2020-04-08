@@ -30,7 +30,6 @@ class NewCategoryForm extends Component {
 			title: this.state.title,
 			color: `rgba(${this.state.r}, ${this.state.g}, ${this.state.b}, ${a})`
 		};
-		console.log('newCat :', newCat);
 		this.addNewCat(newCat);
 	};
 
@@ -38,7 +37,6 @@ class NewCategoryForm extends Component {
 		axiosWithAuth()
 			.post('/mainCat', newCat)
 			.then((response) => {
-				console.log('new main cat post request done', response);
 				this.setState({ title: '' });
 				//this.props.getData();
 				this.props.addCat(response.data);
