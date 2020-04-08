@@ -16,7 +16,8 @@ class MainCategories extends Component {
 		newCategory: {
 			title: '',
 			color: ''
-		}
+		},
+		currentEditingTitle: ''
 	};
 
 	componentDidMount() {
@@ -114,6 +115,7 @@ class MainCategories extends Component {
 								id={this.state.editingId}
 								getData={this.fetchData}
 								toggleEdit={this.toggleEdit}
+								editingTitle={this.state.currentEditingTitle}
 							/>
 						)}
 						<div className="sort__div__container">
@@ -143,7 +145,7 @@ class MainCategories extends Component {
 								.filter((item) => item.title.toLowerCase().includes(this.state.searchValue))
 								.map((item) => {
 									var color = item.color;
-									console.log('color :', color);
+									console.log('category log,', item);
 									return (
 										<div className="clip__path__parent">
 											<div className="clip__path__border">
@@ -164,7 +166,8 @@ class MainCategories extends Component {
 														onClick={() =>
 															this.setState({
 																isEditing: !this.state.isEditing,
-																editingId: item._id
+																editingId: item._id,
+																currentEditingTitle: item.title
 															})}
 													>
 														Edit

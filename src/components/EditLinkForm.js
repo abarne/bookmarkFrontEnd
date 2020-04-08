@@ -130,7 +130,7 @@ class EditLinkForm extends Component {
 						<button className="form__button">Edit Link</button>
 					</form>
 				</div>
-				<h1>Main Categories</h1>
+				<h1>Editing {this.props.currentTitle}</h1>
 			</div>
 		);
 	}

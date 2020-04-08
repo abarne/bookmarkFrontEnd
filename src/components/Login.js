@@ -36,6 +36,7 @@ class Login extends React.Component {
 				.post('/user/login', this.state.credentials)
 				.then((res) => {
 					console.log('login data, ', res.data);
+					console.log('this.props.history :', this.props.history);
 					localStorage.setItem('token', `Bearer ${res.data.token}`);
 					this.setState({ loading: false });
 					this.props.history.push('/mainCategories');

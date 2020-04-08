@@ -15,7 +15,8 @@ class Links extends Component {
 			title: '',
 			link: '',
 			color: ''
-		}
+		},
+		currentEditingTitle: ''
 	};
 
 	componentDidMount() {
@@ -108,7 +109,12 @@ class Links extends Component {
 					/>
 				)}
 				{this.state.isEditing && (
-					<EditLinkForm id={this.state.editingId} getData={this.fetchData} toggleEdit={this.toggleEdit} />
+					<EditLinkForm
+						id={this.state.editingId}
+						getData={this.fetchData}
+						toggleEdit={this.toggleEdit}
+						currentTitle={this.state.currentEditingTitle}
+					/>
 				)}
 				<div className="sort__div__container">
 					<div className="sort__div">
@@ -144,7 +150,6 @@ class Links extends Component {
 								if (!link.includes('http')) {
 									link = 'http://' + link;
 								}
-								console.log(link);
 
 								return (
 									<div key={item._id} className="link__clip__path__border">
@@ -168,7 +173,8 @@ class Links extends Component {
 												onClick={() => {
 													this.setState({
 														isEditing: !this.state.isEditing,
-														editingId: item._id
+														editingId: item._id,
+														currentEditingTitle: item.title
 													});
 												}}
 											>
