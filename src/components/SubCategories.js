@@ -21,12 +21,10 @@ class SubCategories extends Component {
 	};
 
 	componentDidMount() {
-		console.log('this.props.mtach.params :', this.props.match.params);
 		let mainId = this.props.match.params.id;
 		axiosWithAuth()
 			.get(`/subCat/${mainId}`)
 			.then((response) => {
-				console.log(response);
 				this.setState({
 					subCats: response.data
 				});
@@ -41,7 +39,6 @@ class SubCategories extends Component {
 		axiosWithAuth()
 			.get(`/subCat/${mainId}`)
 			.then((response) => {
-				console.log(response);
 				this.setState({
 					subCats: response.data
 				});
@@ -55,8 +52,6 @@ class SubCategories extends Component {
 		axiosWithAuth()
 			.delete(`/subCat/${id}`)
 			.then((response) => {
-				console.log('delete response, ', response);
-				//this.fetchData();
 				this.removeCat(id);
 			})
 			.catch((err) => {
@@ -99,7 +94,6 @@ class SubCategories extends Component {
 
 	setSearch = (e) => {
 		this.setState({ searchValue: e.target.value });
-		console.log(this.state.searchValue);
 	};
 
 	render() {

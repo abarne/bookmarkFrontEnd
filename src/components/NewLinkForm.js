@@ -26,7 +26,6 @@ class NewLinkForm extends Component {
 			link: this.state.link,
 			color: `rgba(${this.state.r}, ${this.state.g}, ${this.state.b}, ${a})`
 		};
-		console.log('newLink :', newLink);
 		this.addNewLink(newLink);
 	};
 
@@ -34,8 +33,6 @@ class NewLinkForm extends Component {
 		axiosWithAuth()
 			.post(`/links/${this.props.subId}`, newLink)
 			.then((response) => {
-				console.log('add new link complete');
-				//this.props.getData();
 				this.props.addLink(response.data);
 			})
 			.catch((err) => {

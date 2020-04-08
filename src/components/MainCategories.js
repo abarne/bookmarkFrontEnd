@@ -24,7 +24,6 @@ class MainCategories extends Component {
 		axiosWithAuth()
 			.get('/mainCat')
 			.then((response) => {
-				console.log(response);
 				this.setState({
 					mainCats: response.data
 				});
@@ -35,7 +34,6 @@ class MainCategories extends Component {
 	}
 
 	fetchData = () => {
-		console.log('in fetch data');
 		axiosWithAuth()
 			.get('/mainCat')
 			.then((response) => {
@@ -52,8 +50,6 @@ class MainCategories extends Component {
 		axiosWithAuth()
 			.delete(`/mainCat/${id}`)
 			.then((response) => {
-				console.log('delete respone, ', response);
-				//this.fetchData();
 				this.removeCat(id);
 			})
 			.catch((err) => {
@@ -96,7 +92,6 @@ class MainCategories extends Component {
 
 	setSearch = (e) => {
 		this.setState({ searchValue: e.target.value });
-		console.log(this.state.searchValue);
 	};
 
 	render() {
@@ -145,7 +140,6 @@ class MainCategories extends Component {
 								.filter((item) => item.title.toLowerCase().includes(this.state.searchValue))
 								.map((item) => {
 									var color = item.color;
-									console.log('category log,', item);
 									return (
 										<div className="clip__path__parent">
 											<div className="clip__path__border">

@@ -34,12 +34,9 @@ class NewSubCategoryForm extends Component {
 	};
 
 	addNewCat = (newCat) => {
-		console.log('this.mainId :', this.props.mainId);
 		axiosWithAuth()
 			.post(`/subCat/${this.props.mainId}`, newCat)
 			.then((response) => {
-				console.log('new main cat post request done');
-				//this.props.getData();
 				this.props.addCat(response.data);
 			})
 			.catch((err) => {

@@ -38,7 +38,6 @@ class Links extends Component {
 		axiosWithAuth()
 			.get(`/links/${subId}`)
 			.then((response) => {
-				console.log(response);
 				this.setState({
 					links: response.data
 				});
@@ -52,8 +51,6 @@ class Links extends Component {
 		axiosWithAuth()
 			.delete(`/links/${id}`)
 			.then((response) => {
-				console.log('delete response :', response);
-				//this.fetchData();
 				this.removeLink(id);
 			})
 			.catch((err) => {
@@ -94,7 +91,6 @@ class Links extends Component {
 
 	setSearch = (e) => {
 		this.setState({ searchValue: e.target.value });
-		console.log(this.state.searchValue);
 	};
 
 	render() {
